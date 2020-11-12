@@ -86,12 +86,10 @@ class tool():
         # :: 输出out表示一组输出神经元的输出向量,数据类型:ndarray，1维
         param hout:相当于激活函数的输出，获胜者输出1，败者输出0
         '''
-        out = np.inner(x, w)
-        out = np.round(out, 5)
-        tmp = list(out)
-        inde = tmp.index(max(tmp))
-        hout = np.array([0. for i in range(len(out))])
-        hout[inde] = 1.
+        dis = self.Euclidean(x, w)  # 确定竞争层竞争获胜神经元
+        data, inde = self.find_winner(dis)
+        hout = np.array([0 for i in range(len(w))])
+        hout[inde] = 1
         return hout
 
     def neuron(self, x, w):

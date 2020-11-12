@@ -11,7 +11,9 @@ from tool import tool
 if __name__ == '__main__':
     # 题目7
     tool = tool()
-    xdata = np.linspace(-4., 4., 100)
+    # xdata = np.linspace(-4., 4., 100)
+    xdata = np.random.uniform(low=-4., high=4., size=100)
+    xdata.sort()
     ydata = np.empty(shape=(0))
     for i in range(len(xdata)):
         ydata = np.append(ydata, [1.1 * (1 - xdata[i] + 2 * (xdata[i]**2))
@@ -24,9 +26,9 @@ if __name__ == '__main__':
     # print(w_out)
     # x_norm = tool.Normalize_new(xdata)
     # w_norm = tool.Normalize_new(w)
-    tool.dot2 = (1000, 0.0)
+    tool.dot2 = (10000, 0.0)
     tool.dot1 = (0., 0.5)
-    tool.iteration = 1000
+    tool.iteration = 10000
     for ite in range(tool.iteration):  # 第一阶段
         for i in range(len(xdata)):
             dis = tool.Euclidean(xdata[i], w)
@@ -56,6 +58,7 @@ if __name__ == '__main__':
     y_out = np.empty(shape=(0), dtype=float)
     for i in range(len(xdata)):
         hout = tool.neuron_act(xdata[i], w)
+        print(hout)
         tmp = tool.neuron(hout, w_out)
         y_out = np.append(y_out, tmp, axis=0)  # 保存输出神经元组的第一个神经元的输出数据
 

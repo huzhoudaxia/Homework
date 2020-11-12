@@ -26,8 +26,8 @@ if __name__ == '__main__':
                       0, 0, 1, 0, 0,
                       0, 0, 1, 0, 0, ])
     x = np.array([c_sam, i_sam, t_sam])
-    # w = np.array([np.random.rand(25) for i in range(3)])
-
+    w = np.array([np.random.rand(25) for i in range(3)])
+    '''
     w = np.array([[0.93584185, 0.23683706, 0.42223593, 0.59378865, 0.54272214, 0.40803855,
                    0.40564657, 0.84378821, 0.11471264, 0.1411507, 0.13720899, 0.93352089,
                    0.03781725, 0.82770237, 0.82693865, 0.75986563, 0.59656431, 0.50670765,
@@ -43,7 +43,7 @@ if __name__ == '__main__':
                    0.11123438, 0.66184111, 0.68819169, 0.28630572, 0.82711379, 0.67185651,
                    0.45196806, 0.9190671, 0.95510386, 0.31780372, 0.16713319, 0.75681688,
                    0.42954655]])
-
+    '''
     noise_sam = tool.make_samples(x)
     small_sam, pred_sam = tool.pic_train(noise_sam)
     # 将正确样本放在每类噪声样本的首位，数据结构3维
@@ -72,9 +72,9 @@ if __name__ == '__main__':
     print(w)
     # 看训练效果
 
-    tool.dot2 = (60000., 0.0)
+    tool.dot2 = (1000., 0.0)
     tool.dot1 = (0., 0.1)
-    tool.iteration = 60000
+    tool.iteration = 1000
     for ite in range(tool.iteration):
         for i in range(len(small_sam)):
             dis = tool.Euclidean(small_sam[i], w)
