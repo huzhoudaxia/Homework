@@ -1,0 +1,15 @@
+敲代码中遇到的实例
+
+例如1：
+out = out.view(4, -1)
+这个方法是对已知的进行reshape
+中间有参数-1，这表明对out进行reshape，reshape成4行，列数由行数决定
+
+例如2：
+batchsize, channels, height, width = x.data.size()
+channels_per_group = int(channels / self.groups) # 每组几个通道
+x = x.view(batchsize, self.groups, channels_per_group, height, width) # reshape
+x = x.view(batchsize, -1, height, width)
+用x.data.size() 得到X的四个维度，然后第二行求出来第三行需要的一个参数，第三行的view第0，3，4都是x.data.size() 得到的，没有发生变化，因此view方法很聪明就将channels进行reshape。
+第四行相当于逆操作，其他三维都不变化，因此把中间的第1，2维reshape为一个向量
+

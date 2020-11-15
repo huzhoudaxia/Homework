@@ -100,7 +100,7 @@ class tool():
         param hout:相当于激活函数的输出，获胜者输出1，败者输出0
         '''
         out = np.inner(x, w)
-        out = np.round(out, 5)
+        # out = np.round(out, 5)
 
         return out
 
@@ -112,8 +112,8 @@ class tool():
         return data
 
     def add_noise_all(self, data):
-        # :: data数据结构为ndarray,sam1
-        # :: function产生sam的所有噪声样本
+        # :: data数据结构为ndarray,一维结构
+        # :: function产生样本的所有噪声样本，即每个像素点都进行反转产生噪声
         # :: 返回ndarray，二维结构，元素为ndarray
         noise = np.empty(shape=(0, 25))
         for i in range(len(data)):
@@ -245,11 +245,12 @@ class tool():
 
 
 if __name__ == '__main__':
-    a = np.array([2])
-    b = np.empty(shape=(0))
-    b = np.append(b, a, axis=0)
-    b = np.append(b, a, axis=0)
-    print(b)
+
+    a = np.array([1, 2])
+    b = np.array([2, 3])
+    c = a
+    c[1] = 0
+    print(a)
     '''
     # hmw2
     c_sam = np.array([0, 1, 1, 1, 0,
